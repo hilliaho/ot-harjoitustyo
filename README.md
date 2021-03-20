@@ -1,6 +1,6 @@
 # Ohjelmistotekniikka #
 
-Tämä repositorio sisältää kurssin *Ohjelmistotekniikka* tehtäviä.
+Tämä repo sisältää kurssin *Ohjelmistotekniikka* tehtäviä.
 Tehtäviin kuuluu muutama **harjoitustehtävä** sekä **harjoitustyö**.
 
 ## Tehtävät ##
