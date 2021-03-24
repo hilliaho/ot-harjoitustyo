@@ -7,6 +7,8 @@ Tehtäviin kuuluu muutama **harjoitustehtävä** sekä **harjoitustyö**.
 
 [Vaatimusmäärittely](https://github.com/hilliaho/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
 
+[Tuntikirjanpito](https://github.com/hilliaho/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjanpito.md)
+
 
 ## Tehtävät
 
