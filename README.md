@@ -18,3 +18,5 @@ Tehtäviin kuuluu muutama **harjoitustehtävä** sekä **harjoitustyö**.
 [komentorivi.txt](https://github.com/hilliaho/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
 ### Viikko 2
+
+[testikattavuus](https://github.com/hilliaho/ot-harjoitustyo/blob/main/laskarit/viikko2/testikattavuus.png)
