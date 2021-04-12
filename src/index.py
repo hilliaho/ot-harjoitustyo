@@ -1,12 +1,13 @@
 import pygame
 
 pygame.init()
-naytto = pygame.display.set_mode((640, 480))
+pygame.display.set_caption("Tetris")
+display = pygame.display.set_mode((300, 500))
 
-naytto.fill((0,0,0))
+display.fill((0,0,0))
 pygame.display.flip()
 
 while True:
-    for tapahtuma in pygame.event.get():
-        if tapahtuma.type == pygame.QUIT:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             exit()
