@@ -12,7 +12,7 @@ tetromino = pygame.image.load(
 
 x = 125
 y = 0
-v = 2
+v = tetromino.get_height()
 clock = pygame.time.Clock()
 
 
@@ -31,4 +31,4 @@ while True:
     if v > 0 and y + tetromino.get_height() >= 500:
         v = 0
 
-    clock.tick(60)
+    clock.tick(1)
