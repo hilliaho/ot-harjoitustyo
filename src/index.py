@@ -10,7 +10,7 @@ tetromino = pygame.image.load(
             os.path.join(dirname, "assets", "square.png")
         )
 
-x = 0
+x = 125
 y = 0
 v = 2
 clock = pygame.time.Clock()
