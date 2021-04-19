@@ -1,34 +1,42 @@
 import pygame
-import os
+from level import Level
+from game_loop import GameLoop
+from event_queue import EventQueue
+from renderer import Renderer
+from clock import Clock
 
-pygame.init()
-display = pygame.display.set_mode((300, 500))
-pygame.display.set_caption("Tetris")
+LEVEL_MAP = [[1, 1, 1, 1, 1],
+             [1, 0, 0, 0, 1],
+             [1, 0, 0, 0, 1],
+             [1, 0, 0, 0, 1],
+             [1, 0, 0, 0, 1],
+             [1, 0, 0, 0, 1],
+             [1, 0, 0, 0, 1],
+             [1, 2, 2, 2, 1],
+             [1, 0, 0, 0, 1],
+             [1, 0, 0, 0, 1],
+             [1, 1, 1, 1, 1]]
 
-dirname = os.path.dirname(__file__)
-tetromino = pygame.image.load(
-            os.path.join(dirname, "assets", "square.png")
-        )
+CELL_SIZE = 50
 
-x = 125
-y = 0
-v = tetromino.get_height()
-clock = pygame.time.Clock()
+def main():
+    height = len(LEVEL_MAP)
+    width = len(LEVEL_MAP[0])
+    display_height = height * CELL_SIZE
+    display_width = width * CELL_SIZE
+    display = pygame.display.set_mode((display_width, display_height))
+
+    pygame.display.set_caption("Sokoban")
+
+    level = Level(LEVEL_MAP, CELL_SIZE)
+    event_queue = EventQueue()
+    renderer = Renderer(display, level)
+    clock = Clock()
+    game_loop = GameLoop(level, renderer, event_queue, clock, CELL_SIZE)
+
+    pygame.init()
+    game_loop.start()
 
 
-
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            exit()
-
-    display.fill((0,0,0))
-    display.blit(tetromino, (x, y))
-    pygame.display.flip()
-
-    y += v
-
-    if v > 0 and y + tetromino.get_height() >= 500:
-        v = 0
-
-    clock.tick(1)
+if __name__ == "__main__":
+    main()

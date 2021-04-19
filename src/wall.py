@@ -2,7 +2,7 @@ import pygame
 from load_image import load_image
 
 
-class Tetromino(pygame.sprite.Sprite):
+class Wall(pygame.sprite.Sprite):
     def __init__(self, x=0, y=0):
         super().__init__()
 
