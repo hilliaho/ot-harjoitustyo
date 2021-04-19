@@ -5,19 +5,28 @@ from event_queue import EventQueue
 from renderer import Renderer
 from clock import Clock
 
-LEVEL_MAP = [[1, 1, 1, 1, 1],
-             [1, 0, 0, 0, 1],
-             [1, 0, 0, 0, 1],
-             [1, 0, 0, 0, 1],
-             [1, 0, 0, 0, 1],
-             [1, 0, 0, 0, 1],
-             [1, 0, 0, 0, 1],
-             [1, 2, 2, 2, 1],
-             [1, 0, 0, 0, 1],
-             [1, 0, 0, 0, 1],
-             [1, 1, 1, 1, 1]]
+LEVEL_MAP = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 2, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 2, 2, 2, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
-CELL_SIZE = 50
+CELL_SIZE = 30
 
 def main():
     height = len(LEVEL_MAP)
@@ -26,7 +35,7 @@ def main():
     display_width = width * CELL_SIZE
     display = pygame.display.set_mode((display_width, display_height))
 
-    pygame.display.set_caption("Sokoban")
+    pygame.display.set_caption("Tetris")
 
     level = Level(LEVEL_MAP, CELL_SIZE)
     event_queue = EventQueue()
