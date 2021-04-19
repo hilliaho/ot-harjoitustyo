@@ -14,12 +14,20 @@ class GameLoop:
             if self._handle_events() == False:
                 break
 
-            self._render()
+            current_time = self._clock.get_ticks()
 
+            self._level.update(current_time)
+            self._render()
             self._clock.tick(60)
+    
 
     def _handle_events(self):
         for event in self._event_queue.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    self._level.move_tetromino(dx=-25)
+                if event.key == pygame.K_RIGHT:
+                    self._level.move_tetromino(dx=25)
             if event.type == pygame.QUIT:
                 return False
 
