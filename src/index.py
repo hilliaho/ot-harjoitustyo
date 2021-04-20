@@ -41,7 +41,7 @@ SPEED = 300
 
 
 def main():
-    level_map = LEVEL_MAP_2
+    level_map = LEVEL_MAP
     height = len(level_map)
     width = len(level_map[0])
     display_height = height * CELL_SIZE
