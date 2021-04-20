@@ -3,6 +3,7 @@ from tetromino import Tetromino
 from floor import Floor
 from wall import Wall
 
+
 class Level:
     def __init__(self, level_map, cell_size, speed):
         self.cell_size = cell_size
@@ -20,7 +21,8 @@ class Level:
     def update(self, current_time):
         if self.previous_new_tetromino_time == 0 or current_time - self.previous_new_tetromino_time >= 6900:
             self.previous_new_tetromino_time = current_time
-            self.tetromino = Tetromino(x=len(self.level_map[0])*self.cell_size//2, speed=self.speed)
+            self.tetromino = Tetromino(
+                x=len(self.level_map[0])*self.cell_size//2, speed=self.speed)
             self.tetrominos.add(self.tetromino)
             self.all_sprites.add(self.tetromino)
 
@@ -47,10 +49,11 @@ class Level:
                     self.floors.add(Floor(normalized_x, normalized_y))
                 elif cell == 1:
                     self.walls.add(Wall(normalized_x, normalized_y))
-
+                elif cell == 2:
+                    self.tetrominos.add(Tetromino(normalized_x, normalized_y))
 
         self.all_sprites.add(
             self.floors,
             self.walls,
-	        self.tetrominos
+            self.tetrominos
         )
