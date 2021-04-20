@@ -11,3 +11,6 @@ päivä|aika|mitä tein
 | |1|sovelluksen rakenteen suunnittelu
 | |1|sprite-luokkaan tutustuminen
 | |1|tetrominojen putoaminen ja seinään törmääminen
+|20.4.|2|testaus
+| |2|pylint
+|yht|13|
