@@ -28,18 +28,28 @@ LEVEL_MAP = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
              [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
+LEVEL_MAP_2 =  [[1, 1, 1, 1, 1, 1],
+                [1, 0, 0, 0, 0, 1],
+                [1, 0, 0, 0, 0, 1],
+                [1, 0, 0, 0, 0, 1],
+                [1, 0, 0, 0, 0, 1],
+                [1, 1, 1, 1, 1, 1]]
+
 CELL_SIZE = 25
 
+SPEED = 300
+
 def main():
-    height = len(LEVEL_MAP)
-    width = len(LEVEL_MAP[0])
+    level_map = LEVEL_MAP_2
+    height = len(level_map)
+    width = len(level_map[0])
     display_height = height * CELL_SIZE
     display_width = width * CELL_SIZE
     display = pygame.display.set_mode((display_width, display_height))
 
     pygame.display.set_caption("Tetris")
 
-    level = Level(LEVEL_MAP, CELL_SIZE)
+    level = Level(level_map, CELL_SIZE, SPEED)
     event_queue = EventQueue()
     renderer = Renderer(display, level)
     clock = Clock()
