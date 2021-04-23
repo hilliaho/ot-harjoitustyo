@@ -3,6 +3,7 @@ from tetromino import Tetromino
 from background import Background
 from wall import Wall
 from floor import Floor
+from fake_wall import FakeWall
 
 
 class Level:
@@ -14,6 +15,7 @@ class Level:
         self.walls = pygame.sprite.Group()
         self.backgrounds = pygame.sprite.Group()
         self.floors = pygame.sprite.Group()
+        self.fake_walls = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self.level_map = level_map
         self._initialize_sprites()
@@ -32,8 +34,7 @@ class Level:
     def new_tetromino(self):
         if not self.tetromino == None:
             self.tetrominos.add(self.tetromino)
-        self.tetromino = Tetromino(
-            x=len(self.level_map[0])*self.cell_size//2, speed=self.speed)
+        self.tetromino = Tetromino(speed=self.speed)
         self.all_sprites.add(self.tetromino)
         self.score += 1
 
@@ -74,9 +75,12 @@ class Level:
                     self.walls.add(Wall(normalized_x, normalized_y))
                 elif cell == 2:
                     self.floors.add(Floor(normalized_x, normalized_y))
+                elif cell == 3:
+                    self.fake_walls.add(FakeWall(normalized_x, normalized_y))
 
         self.all_sprites.add(
             self.backgrounds,
             self.walls,
-            self.floors
+            self.floors,
+            self.fake_walls
         )
