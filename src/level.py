@@ -19,6 +19,7 @@ class Level:
         self._initialize_sprites()
         self.previous_new_tetromino_time = 0
         self.speed = speed
+        self.game_over = False
 
     def update(self, current_time):
         if self.count == 0:
@@ -47,7 +48,12 @@ class Level:
             self.tetromino.rect.move_ip(-dx, -dy)
         if pygame.sprite.spritecollide(self.tetromino, self.tetrominos, False, pygame.sprite.collide_mask):
             self.tetromino.rect.move_ip(-dx, -dy)
+            if self.tetromino.rect.y < 25:
+                self.game_over = True
             self.new_tetromino()
+
+    def rotate_tetromino(self):
+        self.tetromino.rotate()
 
     def drop_tetromino(self):
         self.tetromino.speed = 0

@@ -14,6 +14,9 @@ class GameLoop:
             if self._handle_events() == False:
                 break
 
+            if self._level.game_over == True:
+                break
+
             current_time = self._clock.get_ticks()
 
             self._level.update(current_time)
@@ -27,6 +30,8 @@ class GameLoop:
                     self._level.move_tetromino(dx=-25)
                 if event.key == pygame.K_RIGHT:
                     self._level.move_tetromino(dx=25)
+                if event.key == pygame.K_UP:
+                    self._level.rotate_tetromino()
                 if event.key == pygame.K_SPACE:
                     self._level.drop_tetromino()
             if event.type == pygame.QUIT:
