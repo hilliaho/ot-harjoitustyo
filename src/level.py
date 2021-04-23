@@ -7,7 +7,7 @@ from floor import Floor
 
 class Level:
     def __init__(self, level_map, cell_size, speed):
-        self.count = 0
+        self.score = 0
         self.cell_size = cell_size
         self.tetromino = None
         self.tetrominos = pygame.sprite.Group()
@@ -22,8 +22,7 @@ class Level:
         self.game_over = False
 
     def update(self, current_time):
-        if self.count == 0:
-            print("count: ", str(self.count))
+        if self.score == 0:
             self.new_tetromino()
 
         if self.tetromino.should_move(current_time):
@@ -36,24 +35,24 @@ class Level:
         self.tetromino = Tetromino(
             x=len(self.level_map[0])*self.cell_size//2, speed=self.speed)
         self.all_sprites.add(self.tetromino)
-        self.count += 1
-        print("count: ", str(self.count))
+        self.score += 1
 
     def move_tetromino(self, dx=0, dy=0):
         self.tetromino.rect.move_ip(dx, dy)
-        if pygame.sprite.spritecollide(self.tetromino, self.floors, False):
+        if pygame.sprite.spritecollide(self.tetromino, self.floors, False, pygame.sprite.collide_mask):
             self.tetromino.rect.move_ip(-dx, -dy)
             self.new_tetromino()
-        if self.tetromino.rect.y > 25 and pygame.sprite.spritecollide(self.tetromino, self.walls, False):
+        if pygame.sprite.spritecollide(self.tetromino, self.walls, False, pygame.sprite.collide_mask):
             self.tetromino.rect.move_ip(-dx, -dy)
         if pygame.sprite.spritecollide(self.tetromino, self.tetrominos, False, pygame.sprite.collide_mask):
             self.tetromino.rect.move_ip(-dx, -dy)
             if self.tetromino.rect.y < 25:
+                print("score", str(self.score))
                 self.game_over = True
             self.new_tetromino()
 
-    def rotate_tetromino(self):
-        self.tetromino.rotate()
+    def rotate_tetromino(self, clockwise):
+        self.tetromino.rotate(clockwise)
 
     def drop_tetromino(self):
         self.tetromino.speed = 0

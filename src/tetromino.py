@@ -9,7 +9,7 @@ class Tetromino(pygame.sprite.Sprite):
         self.angle = 0
         self.previous_move_time = 0
 
-        self.image = load_image("L_1.png")
+        self.image = load_image("L.png")
         self.original_image = self.image
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -17,14 +17,20 @@ class Tetromino(pygame.sprite.Sprite):
 
         self.mask = pygame.mask.from_surface(self.image)
 
-    def rotate(self):
-        print("rotate now")
-        if self.angle == 270:
-            self.angle = 0
+    def rotate(self, cw):
+        if cw == False:
+            if self.angle == 270:
+                self.angle = 0
+            else:
+                self.angle += 90
         else:
-            self.angle += 90
+            if self.angle == 0:
+                self.angle = 270
+            else:
+                self.angle -= 90
         
         self.image = pygame.transform.rotate(self.original_image, self.angle)
+        self.mask = pygame.mask.from_surface(self.image)
 
 
     def set_previous_move_time(self, current_time):
