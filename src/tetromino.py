@@ -8,11 +8,13 @@ class Tetromino(pygame.sprite.Sprite):
         self.speed = speed
         self.previous_move_time = 0
 
-        self.image = load_image("square.png")
+        self.image = load_image("z.png")
 
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
+        self.mask = pygame.mask.from_surface(self.image)
 
     def set_previous_move_time(self, current_time):
         self.previous_move_time = current_time

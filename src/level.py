@@ -1,39 +1,56 @@
 import pygame
 from tetromino import Tetromino
-from floor import Floor
+from background import Background
 from wall import Wall
+from floor import Floor
 
 
 class Level:
     def __init__(self, level_map, cell_size, speed):
+        self.count = 0
         self.cell_size = cell_size
         self.tetromino = None
         self.tetrominos = pygame.sprite.Group()
         self.walls = pygame.sprite.Group()
+        self.backgrounds = pygame.sprite.Group()
         self.floors = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self.level_map = level_map
         self._initialize_sprites()
-
         self.previous_new_tetromino_time = 0
         self.speed = speed
 
     def update(self, current_time):
-        if self.previous_new_tetromino_time == 0 or current_time - self.previous_new_tetromino_time >= 6900:
-            self.previous_new_tetromino_time = current_time
-            self.tetromino = Tetromino(
-                x=len(self.level_map[0])*self.cell_size//2, speed=self.speed)
-            self.tetrominos.add(self.tetromino)
-            self.all_sprites.add(self.tetromino)
+        if self.count == 0:
+            print("count: ", str(self.count))
+            self.new_tetromino()
 
         if self.tetromino.should_move(current_time):
             self.move_tetromino(dy=25)
             self.tetromino.set_previous_move_time(current_time)
 
+    def new_tetromino(self):
+        if not self.tetromino == None:
+            self.tetrominos.add(self.tetromino)
+        self.tetromino = Tetromino(
+            x=len(self.level_map[0])*self.cell_size//2, speed=self.speed)
+        self.all_sprites.add(self.tetromino)
+        self.count += 1
+        print("count: ", str(self.count))
+
     def move_tetromino(self, dx=0, dy=0):
         self.tetromino.rect.move_ip(dx, dy)
-        if pygame.sprite.spritecollide(self.tetromino, self.walls, False):
+        if pygame.sprite.spritecollide(self.tetromino, self.floors, False):
             self.tetromino.rect.move_ip(-dx, -dy)
+            self.new_tetromino()
+        if self.tetromino.rect.y > 25 and pygame.sprite.spritecollide(self.tetromino, self.walls, False):
+            self.tetromino.rect.move_ip(-dx, -dy)
+        if pygame.sprite.spritecollide(self.tetromino, self.tetrominos, False, pygame.sprite.collide_mask):
+            self.tetromino.rect.move_ip(-dx, -dy)
+            self.new_tetromino()
+
+    def drop_tetromino(self):
+        self.tetromino.speed = 0
 
     def _initialize_sprites(self):
         height = len(self.level_map)
@@ -46,14 +63,15 @@ class Level:
                 normalized_y = y * self.cell_size
 
                 if cell == 0:
-                    self.floors.add(Floor(normalized_x, normalized_y))
+                    self.backgrounds.add(Background(
+                        normalized_x, normalized_y))
                 elif cell == 1:
                     self.walls.add(Wall(normalized_x, normalized_y))
                 elif cell == 2:
-                    self.tetrominos.add(Tetromino(normalized_x, normalized_y))
+                    self.floors.add(Floor(normalized_x, normalized_y))
 
         self.all_sprites.add(
-            self.floors,
+            self.backgrounds,
             self.walls,
-            self.tetrominos
+            self.floors
         )

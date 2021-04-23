@@ -27,6 +27,8 @@ class GameLoop:
                     self._level.move_tetromino(dx=-25)
                 if event.key == pygame.K_RIGHT:
                     self._level.move_tetromino(dx=25)
+                if event.key == pygame.K_SPACE:
+                    self._level.drop_tetromino()
             if event.type == pygame.QUIT:
                 return False
 
