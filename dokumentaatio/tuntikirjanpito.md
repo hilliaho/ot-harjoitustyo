@@ -14,4 +14,5 @@ päivä|aika|mitä tein
 |20.4.|1|testauksen yrittämistä
 | |1|pylint käyttöön
 | |1|luokkakaavio
-|yht|12|
+|23.4.|5|lisää toiminnallisuutta
+|yht|17|
