@@ -4,7 +4,7 @@ from load_image import load_image
 
 
 class Tetromino(pygame.sprite.Sprite):
-    def __init__(self, x=50, y=-25, speed=500):
+    def __init__(self, x=100, y=-25, speed=500):
         super().__init__()
         self.speed = speed
         self.angle = 0

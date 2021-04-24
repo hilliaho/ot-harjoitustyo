@@ -21,7 +21,7 @@ class GameLoop:
 
             self._level.update(current_time)
             self._render()
-            self._clock.tick(60)
+            self._clock.tick(100)
 
     def _handle_events(self):
         for event in self._event_queue.get():
