@@ -12,21 +12,19 @@ Sovelluksen avulla käyttäjä voi pelata Tetris-peliä.
 
 ### Pelin aikana
 
-- [x] Käyttäjä näkee tetrominoja, jotka putoavat ylhäältä alas
-
-- [ ] Tetrominot ovat eri muotoisia
+- [x] Käyttäjä näkee eri muotoisia tetrominoja, jotka putoavat ylhäältä alas
 
 - [x] Käyttäjä voi liikuttaa tetrominoja oikealle ja vasemmalle
 
-- [ ] Käyttäjä voi kääntää tetrominoja eri päin
+- [x] Käyttäjä voi kääntää tetrominoja eri päin
 
-- [ ] Käyttäjä voi pudottaa tetrominon alas
+- [x] Käyttäjä voi pudottaa tetrominon alas
 
-- [ ] Tetrominot kasautuvat toistensa päälle siinä asennossa missä ne ovat pudonneet
+- [x] Tetrominot kasautuvat toistensa päälle siinä asennossa missä ne ovat pudonneet
 
 - [ ] Rivi poistuu kun sen jokainen ruutu on täytetty
 
-- [ ] Peli loppuu kun joku tetromino ei mahdu kokonaan ruudulle
+- [x] Peli loppuu kun joku tetromino ei mahdu ruudulle
 
 ### Pelin jälkeen
 
@@ -39,4 +37,3 @@ Sovelluksen avulla käyttäjä voi pelata Tetris-peliä.
 - [ ] Käyttäjä voi kirjautua peliin omalla käyttäjätunnuksellaan
 
 - [ ] Käyttäjä voi nähdä pelin etusivulla omat parhaat pisteensä
-
