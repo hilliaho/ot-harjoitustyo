@@ -15,4 +15,5 @@ päivä|aika|mitä tein
 | |1|pylint käyttöön
 | |1|luokkakaavio
 |23.4.|5|lisää toiminnallisuutta
+|24.4.|2|ongelmien korjaaminen
 |yht|17|
