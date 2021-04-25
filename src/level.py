@@ -55,8 +55,8 @@ class Level:
         if pygame.sprite.spritecollide(self.tetromino, self.all_obstacles, False, pygame.sprite.collide_mask):
             self.tetromino.rotate(not clockwise)
 
-    def drop_tetromino(self):
-        self.tetromino.speed = 0
+    def set_tetromino_speed(self, speed):
+        self.tetromino.speed = speed
 
     def can_move(self, dx=0, dy=0):
         self.tetromino.rect.move_ip(dx, dy)
