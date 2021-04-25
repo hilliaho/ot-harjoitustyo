@@ -10,18 +10,18 @@ class Tetromino(pygame.sprite.Sprite):
         self.angle = 0
         self.previous_move_time = 0
         self.tetromino_names = "IOTJLSZ"
+        self.color = None
         self.image = self.random_tetromino()
         self.original_image = self.image
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
         self.mask = pygame.mask.from_surface(self.image)
-        self.color = "I"
-
+        
     def random_tetromino(self):
         i = random.randint(0, 6)
         filename = self.tetromino_names[i] + ".png"
-        self.color = filename
+        self.color = self.tetromino_names[i]
         tetromino_image = load_image(filename)
         return tetromino_image
 
