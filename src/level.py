@@ -38,10 +38,10 @@ class Level:
         if not self.tetromino == None:
             colliding=pygame.sprite.spritecollide(self.tetromino, self.backgrounds, False, pygame.sprite.collide_mask)
             for background in colliding:
-                wall = Wall(x=background.rect.x, y=background.rect.y)
-                self.all_sprites.add(wall)
-                self.all_obstacles.add(wall)
-                self.ground_tetrominos.add(wall)
+                ground_tetromino = GroundTetromino(color=self.tetromino.color, x=background.rect.x, y=background.rect.y)
+                self.all_sprites.add(ground_tetromino)
+                self.all_obstacles.add(ground_tetromino)
+                self.ground_tetrominos.add(ground_tetromino)
             self.tetromino.kill()
             full_rows=list(range(1,21))
             for background in self.backgrounds:
@@ -49,16 +49,14 @@ class Level:
                     row = background.rect.y/25
                     if row in full_rows:
                         full_rows.remove(row)
-            for groundtetromino in self.ground_tetrominos:
-                row = groundtetromino.rect.y/25
+            for ground_tetromino in self.ground_tetrominos:
+                row = ground_tetromino.rect.y/25
                 if row in full_rows:
-                    groundtetromino.kill()
+                    ground_tetromino.kill()
             for row in full_rows:
-                #print("row:", str(row))
-                for groundtetromino in self.ground_tetrominos:
-                    #print("row:", str(groundtetromino.rect.y/25), "col:", str(groundtetromino.rect.x/25))
-                    if groundtetromino.rect.y/25 < row:
-                        groundtetromino.rect.y += 25
+                for ground_tetromino in self.ground_tetrominos:
+                    if ground_tetromino.rect.y/25 < row:
+                        ground_tetromino.rect.y += 25
                         
                 
 
