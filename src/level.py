@@ -4,6 +4,7 @@ from background import Background
 from wall import Wall
 from floor import Floor
 from fake_wall import FakeWall
+from ground_tetromino import GroundTetromino
 
 
 class Level:
@@ -16,6 +17,7 @@ class Level:
         self.backgrounds = pygame.sprite.Group()
         self.floors = pygame.sprite.Group()
         self.fake_walls = pygame.sprite.Group()
+        self.ground_tetrominos = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self.all_obstacles = pygame.sprite.Group()
         self.level_map = level_map
@@ -34,8 +36,32 @@ class Level:
 
     def new_tetromino(self):
         if not self.tetromino == None:
-            self.tetrominos.add(self.tetromino)
-            self.all_obstacles.add(self.tetromino)
+            colliding=pygame.sprite.spritecollide(self.tetromino, self.backgrounds, False, pygame.sprite.collide_mask)
+            for background in colliding:
+                wall = Wall(x=background.rect.x, y=background.rect.y)
+                self.all_sprites.add(wall)
+                self.all_obstacles.add(wall)
+                self.ground_tetrominos.add(wall)
+            self.tetromino.kill()
+            full_rows=list(range(1,21))
+            for background in self.backgrounds:
+                if not pygame.sprite.spritecollide(background, self.ground_tetrominos, False, pygame.sprite.collide_mask):
+                    row = background.rect.y/25
+                    if row in full_rows:
+                        full_rows.remove(row)
+            for groundtetromino in self.ground_tetrominos:
+                row = groundtetromino.rect.y/25
+                if row in full_rows:
+                    groundtetromino.kill()
+            for row in full_rows:
+                #print("row:", str(row))
+                for groundtetromino in self.ground_tetrominos:
+                    #print("row:", str(groundtetromino.rect.y/25), "col:", str(groundtetromino.rect.x/25))
+                    if groundtetromino.rect.y/25 < row:
+                        groundtetromino.rect.y += 25
+                        
+                
+
         self.tetromino = Tetromino(speed=self.speed)
         self.all_sprites.add(self.tetromino)
         self.score += 1
@@ -59,12 +85,12 @@ class Level:
         self.tetromino.speed = speed
 
     def can_move(self, dx=0, dy=0):
+        can_move=True
         self.tetromino.rect.move_ip(dx, dy)
         if pygame.sprite.spritecollide(self.tetromino, self.all_obstacles, False, pygame.sprite.collide_mask):
-            self.tetromino.rect.move_ip(-dx, -dy)
-            return False
+            can_move=False
         self.tetromino.rect.move_ip(-dx, -dy)
-        return True
+        return can_move
 
     def _initialize_sprites(self):
         height = len(self.level_map)
