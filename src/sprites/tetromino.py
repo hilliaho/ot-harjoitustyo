@@ -26,17 +26,22 @@ class Tetromino(pygame.sprite.Sprite):
         return tetromino_names[i]
 
     def rotate(self, clockwise):
-        if clockwise is False:
-            if self.angle == 270:
-                self.angle = 0
-            else:
-                self.angle += 90
-        else:
+        if self.name == "I" or self.name == "S" or self.name == "Z":
             if self.angle == 0:
-                self.angle = 270
+                self.angle = 90
+            elif self.angle == 90:
+                self.angle = 0
+        else:
+            if clockwise is False:
+                if self.angle == 270:
+                    self.angle = 0
+                else:
+                    self.angle += 90
             else:
-                self.angle -= 90
-
+                if self.angle == 0:
+                    self.angle = 270
+                else:
+                    self.angle -= 90
         self.image = pygame.transform.rotate(self.original_image, self.angle)
         self.mask = pygame.mask.from_surface(self.image)
 
