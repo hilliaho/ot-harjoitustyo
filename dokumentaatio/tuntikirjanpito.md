@@ -16,4 +16,5 @@ päivä|aika|mitä tein
 | |1|luokkakaavio
 |23.4.|5|lisää toiminnallisuutta
 |24.4.|2|ongelmien korjaaminen
-|yht|19|
+|25.4.|4|täyden rivin poistaminen
+|yht|23|
