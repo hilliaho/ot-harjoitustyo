@@ -30,6 +30,7 @@ LEVEL_MAP = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
 CELL_SIZE = 25
 
+
 def main():
     level_map = LEVEL_MAP
     height = len(level_map)

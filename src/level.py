@@ -13,7 +13,6 @@ class Level:
         self.obstacles = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self._initialize_sprites(level_map)
-        
 
     def update(self, current_time):
         if self.score == 0:
@@ -24,7 +23,8 @@ class Level:
                 if self.game_over() is True:
                     return
                 self.new_tetromino()
-            else: self.move_tetromino("down")
+            else:
+                self.move_tetromino("down")
             self.tetromino.set_previous_move_time(current_time)
 
     def new_tetromino(self):
@@ -58,9 +58,9 @@ class Level:
         self.tetromino = Tetromino()
         self.all_sprites.add(self.tetromino)
         self.score += 1
-          
+
     def game_over(self):
-        if self.tetromino == None:
+        if self.tetromino is None:
             return False
         if self.tetromino.rect.y == 0 and not self.tetromino_can_move("down"):
             print("score:", str(self.score))
@@ -80,7 +80,6 @@ class Level:
             self.tetromino.rect.move_ip(0, 25)
         elif direction == "up":
             self.tetromino.rect.move_ip(0, -25)
-
 
     def rotate_tetromino(self, clockwise):
         self.tetromino.rotate(clockwise)
