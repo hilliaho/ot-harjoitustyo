@@ -1,10 +1,10 @@
-import pygame
 import random
+import pygame
 from load_image import load_image
 
 
 class Tetromino(pygame.sprite.Sprite):
-    def __init__(self, x=100, y=-25, speed=500, name="random"):
+    def __init__(self, x_coordinate=100, y_coordinate=0, speed=500, name="random"):
         super().__init__()
         self.speed = speed
         self.angle = 0
@@ -16,8 +16,8 @@ class Tetromino(pygame.sprite.Sprite):
         self.image = load_image(filename)
         self.original_image = self.image
         self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.x = x_coordinate
+        self.rect.y = y_coordinate
         self.mask = pygame.mask.from_surface(self.image)
 
     def random_tetromino(self):
@@ -26,7 +26,7 @@ class Tetromino(pygame.sprite.Sprite):
         return tetromino_names[i]
 
     def rotate(self, clockwise):
-        if clockwise == False:
+        if clockwise is False:
             if self.angle == 270:
                 self.angle = 0
             else:

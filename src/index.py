@@ -5,7 +5,7 @@ from event_queue import EventQueue
 from renderer import Renderer
 from clock import Clock
 
-LEVEL_MAP = [[1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
+LEVEL_MAP = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -26,12 +26,9 @@ LEVEL_MAP = [[1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1]]
+             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
 CELL_SIZE = 25
-
-SPEED = 300
-
 
 def main():
     level_map = LEVEL_MAP
@@ -43,7 +40,7 @@ def main():
 
     pygame.display.set_caption("Tetris")
 
-    level = Level(level_map, CELL_SIZE, SPEED)
+    level = Level(level_map)
     event_queue = EventQueue()
     renderer = Renderer(display, level)
     clock = Clock()

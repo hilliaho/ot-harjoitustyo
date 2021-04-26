@@ -11,10 +11,10 @@ class GameLoop:
 
     def start(self):
         while True:
-            if self._handle_events() == False:
+            if self._handle_events() is False:
                 break
 
-            if self._level.game_over == True:
+            if self._level.game_over() is True:
                 break
 
             current_time = self._clock.get_ticks()
@@ -27,9 +27,9 @@ class GameLoop:
         for event in self._event_queue.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    self._level.move_tetromino(dx=-25)
+                    self._level.move_tetromino_if_possible("left")
                 if event.key == pygame.K_RIGHT:
-                    self._level.move_tetromino(dx=25)
+                    self._level.move_tetromino_if_possible("right")
                 if event.key == pygame.K_UP:
                     self._level.rotate_tetromino(clockwise=True)
                 if event.key == pygame.K_DOWN:
@@ -41,6 +41,7 @@ class GameLoop:
                     self._level.set_tetromino_speed(500)
             elif event.type == pygame.QUIT:
                 return False
+        return True
 
     def _render(self):
         self._renderer.render()
