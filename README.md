@@ -1,9 +1,10 @@
 # Tetris
 
-Sovelluksen avulla käyttäjä voi pelata Tetris-peliä. 
+Sovelluksen avulla käyttäjä voi pelata Tetris-peliä.
 
-Pelin tämänhetkinen tilanne on, että Tetriksen Tetromino-palat ovat ainoastaan neliöitä, joita pystyy liikuttamaan oikealle ja vasemmalle.
-Tetrominot voivat mennä toistensa läpi, mutta ne eivät voi mennä seinistä läpi.
+## Pelin ohjeet
+
+Pelin aikana pelikentälle ilmestyy Tetromino-palikoita, jotka putoavat alaspäin. Tetromino-palikoita voi liikuttaa nuolinäppäimillä vasemmalle ja oikealle, kääntää ylänuolinäppäimellä, pudottaa nopeammin alanuolinäppäimellä ja pudottaa saman tien välilyönnillä. Tetrominoja ohjaillaan toistensa lomaan ja yritetään saada rivi täyteen, jolloin täysi rivi tyhjenee ja kentälle tulee lisää tilaa. Peli päättyy, kun uusi tetromino ei enää mahdu pelikentälle.
 
 ## Dokumentaatio
 
@@ -12,3 +13,15 @@ Tetrominot voivat mennä toistensa läpi, mutta ne eivät voi mennä seinistä l
 [Tuntikirjanpito](https://github.com/hilliaho/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjanpito.md)
 
 [Arkkitehtuurikuvaus](https://github.com/hilliaho/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+
+## Komentorivitoimintoja
+
+Riippuvuuksien asennus: `poetry install`
+
+Sovelluksen käynnistys: `poetry run invoke start`
+
+Testien suoritus: `poetry run invoke test`
+
+Testikattavuusraportin luominen: `poetry run invoke coverage-report`
+
+Pylint-tarkistus: `poetry run invoke lint`
