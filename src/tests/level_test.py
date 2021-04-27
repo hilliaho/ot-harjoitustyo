@@ -2,24 +2,74 @@ import unittest
 
 from level import Level
 
-LEVEL_MAP =   [[1, 1, 1, 1, 1, 1],
-                [1, 0, 0, 0, 0, 1],
-                [1, 0, 0, 0, 0, 1],
-                [1, 0, 0, 0, 0, 1],
-                [1, 0, 0, 0, 0, 1],
-                [1, 1, 1, 1, 1, 1]]
-
-CELL_SIZE = 25
-SPEED = 100
+LEVEL_MAP = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
 class TestLevel(unittest.TestCase):
     def setUp(self):
-        self.level = Level(LEVEL_MAP, CELL_SIZE)
+        self.level = Level(LEVEL_MAP)
+        self.level.new_tetromino(name="L")
+        self.tetromino = self.level.tetromino
 
     def test_tetromino_can_move(self):
-        tetromino = self.level.tetromino(SPEED)
+        self.move_tetromino("left", 1)
+        self.assertEqual(self.tetromino.rect.x, 75)
 
-        self.assertEqual(tetromino.rect.x, len(LEVEL_MAP[0])*CELL_SIZE//2)
+    def test_tetromino_cant_move_through_walls(self):
+        self.move_tetromino("left", 5)
+        self.assertEqual(self.tetromino.rect.x, 0)
 
-        self.level.move_tetromino(dx=CELL_SIZE)
-        self.assertEqual(tetromino.rect.x, len(LEVEL_MAP[0])*CELL_SIZE//2-CELL_SIZE)
+    def test_tetromino_can_rotate(self):
+        self.level.rotate_tetromino()
+        self.assertEqual(self.tetromino.angle, 270)
+    
+    def test_tetromino_cant_rotate_through_walls(self):
+        self.level.rotate_tetromino()
+        self.move_tetromino("left", 5)
+        self.level.rotate_tetromino()
+        self.assertEqual(self.tetromino.angle, 270)
+
+    def test_full_rows_get_deleted(self):
+        self.move_tetromino("down", 25)
+        self.level.new_tetromino(name="T")
+        self.tetromino = self.level.tetromino
+        self.move_tetromino("right", 3)
+        self.move_tetromino("down", 25)
+        self.level.new_tetromino(name="I")
+        self.tetromino = self.level.tetromino
+        self.move_tetromino("left", 3)
+        self.move_tetromino("down", 25)
+        self.level.delete_full_rows()
+        self.level.new_tetromino(name="I")
+        self.move_tetromino("left", 3)
+        self.move_tetromino("down", 25)
+        self.assertEqual(self.tetromino.rect.y, 475)
+    
+    def move_tetromino(self, direction, number):
+        for i in range(number):
+            self.level.move_tetromino_if_possible(direction)
+
+
+
+
+

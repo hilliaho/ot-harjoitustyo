@@ -2,12 +2,11 @@ import pygame
 
 
 class GameLoop:
-    def __init__(self, level, renderer, event_queue, clock, cell_size):
+    def __init__(self, level, renderer, event_queue, clock):
         self._level = level
         self._renderer = renderer
         self._event_queue = event_queue
         self._clock = clock
-        self._cell_size = cell_size
 
     def start(self):
         while True:
@@ -31,14 +30,14 @@ class GameLoop:
                 if event.key == pygame.K_RIGHT:
                     self._level.move_tetromino_if_possible("right")
                 if event.key == pygame.K_UP:
-                    self._level.rotate_tetromino(clockwise=True)
+                    self._level.rotate_tetromino()
                 if event.key == pygame.K_DOWN:
-                    self._level.set_tetromino_speed(50)
+                    self._level.tetromino.speed=50
                 if event.key == pygame.K_SPACE:
-                    self._level.set_tetromino_speed(0)
+                    self._level.tetromino.speed=0
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_DOWN:
-                    self._level.set_tetromino_speed(500)
+                    self._level.tetromino.speed=500
             elif event.type == pygame.QUIT:
                 return False
         return True
