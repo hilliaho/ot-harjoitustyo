@@ -67,7 +67,7 @@ class TestLevel(unittest.TestCase):
     
     def move_tetromino(self, direction, number):
         for i in range(number):
-            self.level.move_tetromino_if_possible(direction)
+            self.level.move_tetromino(direction)
 
 
 

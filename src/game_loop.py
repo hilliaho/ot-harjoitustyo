@@ -26,9 +26,9 @@ class GameLoop:
         for event in self._event_queue.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    self._level.move_tetromino_if_possible("left")
+                    self._level.move_tetromino("left")
                 if event.key == pygame.K_RIGHT:
-                    self._level.move_tetromino_if_possible("right")
+                    self._level.move_tetromino("right")
                 if event.key == pygame.K_UP:
                     self._level.rotate_tetromino()
                 if event.key == pygame.K_DOWN:

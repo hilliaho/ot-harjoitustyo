@@ -28,7 +28,7 @@ class Level:
                 self.score += 1
                 self.new_tetromino()
             else:
-                self._move_tetromino("down")
+                self._move_ip("down")
             self.tetromino.set_previous_move_time(current_time)
 
     def new_tetromino(self, name="random"):
@@ -43,11 +43,11 @@ class Level:
             return True
         return False
 
-    def move_tetromino_if_possible(self, direction):
+    def move_tetromino(self, direction):
         if self._tetromino_can_move(direction) is True:
-            self._move_tetromino(direction)
+            self._move_ip(direction)
 
-    def _move_tetromino(self, direction):
+    def _move_ip(self, direction):
         if direction == "left":
             self.tetromino.rect.move_ip(-25, 0)
         elif direction == "right":
@@ -98,11 +98,11 @@ class Level:
 
     def _tetromino_can_move(self, direction):
         can_move = True
-        self._move_tetromino(direction)
+        self._move_ip(direction)
         if self._collide(self.tetromino, self.obstacles):
             can_move = False
         opposite_direction = self._opposite_direction(direction)
-        self._move_tetromino(opposite_direction)
+        self._move_ip(opposite_direction)
         return can_move
 
     def _collide(self, sprite, group):
