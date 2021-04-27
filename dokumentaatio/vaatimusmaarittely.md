@@ -22,7 +22,7 @@ Sovelluksen avulla käyttäjä voi pelata Tetris-peliä.
 
 - [x] Tetrominot kasautuvat toistensa päälle siinä asennossa missä ne ovat pudonneet
 
-- [ ] Rivi poistuu kun sen jokainen ruutu on täytetty
+- [x] Rivi poistuu kun sen jokainen ruutu on täytetty
 
 - [x] Peli loppuu kun joku tetromino ei mahdu ruudulle
 
