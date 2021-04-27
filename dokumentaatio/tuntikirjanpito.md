@@ -17,4 +17,7 @@ päivä|aika|mitä tein
 |23.4.|5|lisää toiminnallisuutta
 |24.4.|2|ongelmien korjaaminen
 |25.4.|4|täyden rivin poistaminen
-|yht|23|
+|26.4.|4|koodin refaktorointi
+|27.4.|1|testaus
+| |1|sekvenssikaavio
+|yht|29|
