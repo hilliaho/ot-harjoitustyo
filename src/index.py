@@ -1,9 +1,9 @@
 import pygame
-from level import Level
-from game_loop import GameLoop
-from event_queue import EventQueue
-from renderer import Renderer
-from clock import Clock
+from services.level import Level
+from ui.game_loop import GameLoop
+from services.event_queue import EventQueue
+from services.renderer import Renderer
+from services.clock import Clock
 
 LEVEL_MAP = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
