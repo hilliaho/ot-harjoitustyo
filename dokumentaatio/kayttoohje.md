@@ -14,6 +14,7 @@ Peli alkaa saman tien kun ohjelma käynnistetään.
 
 Pelikentälle ilmestyy tetromino, joka putoaa alaspäin. 
 Tetrominoa voi ohjata nuolinäppäimillä oikealle ja vasemmalle, kääntää ylänuolella, pudottaa nopeammin alanuolesta sekä pudottaa heti välilyönnillä.
+Pelikentän vieressä näkyy seuraavaksi tuleva tetromino.
 
 ![](./kuvat/taysi_rivi.png)
 
