@@ -1,8 +1,8 @@
 import unittest
 import pygame
 
-from level import Level
-from game_loop import GameLoop
+from services.level import Level
+from ui.game_loop import GameLoop
 
 
 class StubClock:
@@ -31,33 +31,9 @@ class StubRenderer:
     def render(self):
         pass
 
-
-LEVEL_MAP = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
-
 class TestGameLoop(unittest.TestCase):
     def setUp(self):
-        self.level = Level(LEVEL_MAP)
+        self.level = Level()
         self.level.new_tetromino()
 
     def test_game_over_works(self):
