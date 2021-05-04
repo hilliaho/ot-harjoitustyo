@@ -20,4 +20,7 @@ päivä|aika|mitä tein
 |26.4.|4|koodin refaktorointi
 |27.4.|1|testaus
 | |1|sekvenssikaavio
-|yht|29|
+|3.5.|1|repositorion järjestely
+|4.5.|2|docstring
+| |2|seuraava tetromino näkyviin
+|yht|34|
