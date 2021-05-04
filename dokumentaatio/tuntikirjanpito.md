@@ -23,4 +23,5 @@ päivä|aika|mitä tein
 |3.5.|1|repositorion järjestely
 |4.5.|2|docstring
 | |2|seuraava tetromino näkyviin
-|yht|34|
+| |1|käyttöohje
+|yht|35|
