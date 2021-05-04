@@ -15,9 +15,7 @@ class GameLoop:
 
             if self._level.game_over() is True:
                 break
-
             current_time = self._clock.get_ticks()
-
             self._level.update(current_time)
             self._render()
             self._clock.tick(100)

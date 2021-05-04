@@ -25,7 +25,7 @@ class Tetromino(pygame.sprite.Sprite):
         self.angle = 0
         self.previous_move_time = 0
         self.name = name
-        if self.name == None:
+        if self.name is None:
             self.name = self.random_tetromino()
         if (self.name == "I" or self.name == "O") and x_coordinate == 300:
             x_coordinate += 12

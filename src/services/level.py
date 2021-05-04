@@ -12,7 +12,7 @@ class Level:
 
         self.score = 0
         self.tetromino = None
-        self.next_tetromino = None
+        self.next_tetromino = Tetromino(None, 300, 40)
         self.tetrominoes = pygame.sprite.Group()
         self.backgrounds = pygame.sprite.Group()
         self.obstacles = pygame.sprite.Group()
@@ -31,7 +31,6 @@ class Level:
 
         if self.score == 0:
             self.score += 1
-            self.next_tetromino = Tetromino(None, 300, 40)
             self.new_tetromino()
 
         if self.tetromino.should_move(current_time):
@@ -52,13 +51,14 @@ class Level:
         Args:
             name: Vapaaehtoinen, oletusarvo None. Tetrominon nimi.
         """
-        next = self.next_tetromino.name
-        self.tetromino = Tetromino(next)
+        if name is None:
+            name = self.next_tetromino.name
+        self.tetromino = Tetromino(name)
         self.all_sprites.add(self.tetromino)
         self.next_tetromino.kill()
         self.next_tetromino = Tetromino(None, 300, 40)
         self.all_sprites.add(self.next_tetromino)
-        
+
     def game_over(self):
         """Selvittää, onko pelin aika päättyä.
 
@@ -182,7 +182,7 @@ class Level:
             group: Ryhmä spritejä, joiden törmäämistä tarkastellaan.
 
         Returns:
-            Ryhmä, joka sisältää kaikki ryhmän spritet, 
+            Ryhmä, joka sisältää kaikki ryhmän spritet,
             jotka törmäävät tarkastellun spriten kanssa.
         """
         return pygame.sprite.spritecollide(
@@ -214,9 +214,7 @@ class Level:
 
         for row in range(height):
             for col in range(width):
-                if (row > 0 and row < 21) and (col > 0 and col < 11):
-                    cell = 0
-                elif (row > 0 and row < 6) and (col > 11 and col < 17):
+                if (0 < row < 21 and 0 < col < 11) or (0 < row < 6 and 11 < col < 17):
                     cell = 0
                 else:
                     cell = 1
