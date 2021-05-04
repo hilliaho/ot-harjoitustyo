@@ -14,6 +14,8 @@ Sovelluksen avulla käyttäjä voi pelata Tetris-peliä.
 
 - [x] Käyttäjä näkee eri muotoisia tetrominoja, jotka putoavat ylhäältä alas
 
+- [x] Käyttäjä näkee etukäteen myös seuraavaksi tulevan tetrominon
+
 - [x] Käyttäjä voi liikuttaa tetrominoja oikealle ja vasemmalle
 
 - [x] Käyttäjä voi kääntää tetrominoja eri päin
