@@ -11,6 +11,7 @@ class Tetromino(pygame.sprite.Sprite):
         y_coordinate: Tetrominon y-koordinaatti.
         name: Tetrominon nimi.
     """
+
     def __init__(self, name, x_coordinate=100, y_coordinate=0):
         """Luokan konstruktori, joka luo uuden tetrominon.
 
@@ -26,6 +27,8 @@ class Tetromino(pygame.sprite.Sprite):
         self.name = name
         if self.name == None:
             self.name = self.random_tetromino()
+        if (self.name == "I" or self.name == "O") and x_coordinate == 300:
+            x_coordinate += 12
         self.image = load_image(self.name + ".png")
         self.original_image = self.image
         self.rect = self.image.get_rect()

@@ -8,7 +8,7 @@ from services.clock import Clock
 
 def main():
     height = 22
-    width = 12
+    width = 18
     display_height = height * 25
     display_width = width * 25
     display = pygame.display.set_mode((display_width, display_height))
