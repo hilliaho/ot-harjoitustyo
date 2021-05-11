@@ -1,15 +1,15 @@
 import random
 import pygame
-from load_image import load_image
+from ui.load_image import load_image
 
 
 class Tetromino(pygame.sprite.Sprite):
     """Luokka, joka kuvaa yhtä tetromino-palikkaa
 
     Attributes:
+        name: Tetrominon nimi.
         x_coordinate: Tetrominon x-koordinaatti.
         y_coordinate: Tetrominon y-koordinaatti.
-        name: Tetrominon nimi.
     """
 
     def __init__(self, name, x_coordinate=100, y_coordinate=0):
@@ -21,7 +21,7 @@ class Tetromino(pygame.sprite.Sprite):
             name: Tetrominon nimi.
         """
         super().__init__()
-        self.speed = 500
+        self.speed = 0
         self.angle = 0
         self.previous_move_time = 0
         self.name = name
@@ -73,14 +73,6 @@ class Tetromino(pygame.sprite.Sprite):
                     self.angle += 90
         self.image = pygame.transform.rotate(self.original_image, self.angle)
         self.mask = pygame.mask.from_surface(self.image)
-
-    def set_previous_move_time(self, current_time):
-        """Pitää kirjaa siitä, milloin tetromino on liikkunut viimeksi.
-
-        Args:
-            current_time: Aika tällä hetkellä.
-        """
-        self.previous_move_time = current_time
 
     def should_move(self, current_time):
         """Selvittää, pitääkö tetrominon liikkua.

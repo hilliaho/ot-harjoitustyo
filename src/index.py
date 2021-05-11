@@ -1,9 +1,9 @@
 import pygame
-from ui.game_loop import GameLoop
+from services.game_loop import GameLoop
 from services.level import Level
 from services.event_queue import EventQueue
-from services.renderer import Renderer
 from services.clock import Clock
+from ui.renderer import Renderer
 
 
 def main():

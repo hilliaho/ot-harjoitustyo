@@ -2,6 +2,7 @@ import pygame
 from sprites.tetromino import Tetromino
 from sprites.background import Background
 from sprites.wall import Wall
+from sprites.text import Text
 
 
 class Level:
@@ -9,8 +10,8 @@ class Level:
 
     def __init__(self):
         """Luokan konstruktori, joka luo uuden pelikentän tilasta vastaavan palvelun"""
-
-        self.score = 0
+        self.score = Text(0, 300, 225, 30)
+        self.level = Text(1, 300, 300, 30)
         self.tetromino = None
         self.next_tetromino = Tetromino(None, 300, 40)
         self.tetrominoes = pygame.sprite.Group()
@@ -28,22 +29,19 @@ class Level:
         Args:
             current_time: Aika tällä hetkellä.
         """
-
-        if self.score == 0:
-            self.score += 1
-            self.new_tetromino()
-
-        if self.tetromino.should_move(current_time):
-            if not self._tetromino_can_move("down"):
-                if self.game_over() is True:
-                    return
-                self._deactivate_tetromino()
-                self.delete_full_rows()
-                self.score += 1
+        if self.game_over() is False:
+            if self.tetromino is None:
                 self.new_tetromino()
-            else:
-                self._move_ip("down")
-            self.tetromino.set_previous_move_time(current_time)
+
+            if self.tetromino.should_move(current_time):
+                if not self._tetromino_can_move("down"):
+                    self._deactivate_tetromino()
+                    self.delete_full_rows()
+                    self.level_up()
+                    self.new_tetromino()
+                else:
+                    self._move_ip("down")
+                self.tetromino.previous_move_time = current_time
 
     def new_tetromino(self, name=None):
         """Luo uuden tetrominon ja lisää sen kaikkien spritejen ryhmään.
@@ -51,6 +49,7 @@ class Level:
         Args:
             name: Vapaaehtoinen, oletusarvo None. Tetrominon nimi.
         """
+
         if name is None:
             name = self.next_tetromino.name
         self.tetromino = Tetromino(name)
@@ -58,6 +57,7 @@ class Level:
         self.next_tetromino.kill()
         self.next_tetromino = Tetromino(None, 300, 40)
         self.all_sprites.add(self.next_tetromino)
+        self.set_tetromino_speed(1)
 
     def game_over(self):
         """Selvittää, onko pelin aika päättyä.
@@ -69,9 +69,21 @@ class Level:
         if self.tetromino is None:
             return False
         if self.tetromino.rect.y == 0 and not self._tetromino_can_move("down"):
-            print("score:", str(self.score))
+            self.all_sprites.add(Text("GAME", 300, 350, 52, (127,127,127)))
+            self.all_sprites.add(Text("OVER", 300, 400, 52, (127,127,127)))
             return True
         return False
+
+    def level_up(self):
+        """korottaa tasoa tarvittaessa"""
+        
+        level_content = self.level.content
+        if self.score.content >= 5*level_content**2:
+            level_content += 1
+            self.level.kill()
+            self.level = Text(level_content,
+                              300, 300,  30)
+            self.all_sprites.add(self.level)
 
     def move_tetromino(self, direction):
         """Liikuttaa tetrominoa haluttuun suuntaan, jos se on mahdollista.
@@ -111,6 +123,12 @@ class Level:
         if self._collide(self.tetromino, self.obstacles):
             self.tetromino.rotate(not clockwise)
 
+    def drop_tetromino(self):
+        """pudottaa tetrominon"""
+
+        while self._tetromino_can_move("down"):
+            self._move_ip("down")
+
     def _deactivate_tetromino(self):
         """Deaktivoi maahan pudonneen tetrominon."""
 
@@ -146,8 +164,13 @@ class Level:
             row = tetromino.rect.y/25
             if row in full_rows:
                 tetromino.kill()
-        empty_rows = full_rows
-        self._drop_remaining_rows(empty_rows)
+        self.score.content += len(full_rows)**2
+        score_content = self.score.content
+        self.score.kill()
+        self.score = Text(score_content,
+                          300, 225, 30)
+        self.all_sprites.add(self.score)
+        self._drop_remaining_rows(full_rows)
 
     def _drop_remaining_rows(self, empty_rows):
         """Pudottaa jäljellä olevia rivejä alaspäin."""
@@ -206,28 +229,41 @@ class Level:
             opposite_direction = "up"
         return opposite_direction
 
+    def set_tetromino_speed(self, speed):
+        """Muuttaa tetrominon nopeutta.
+
+        Args:
+            speed: Tetrominon nopeus.
+        """
+        if speed == 1:
+            self.tetromino.speed = 600 - self.level.content*50
+        elif speed == 2:
+            self.tetromino.speed = 50
+
     def _initialize_sprites(self):
-        """Alustaa pelikentän tausta- ja seinä-spritet"""
+        """Alustaa pelikentän tausta-, seinä- ja teksti-spritet."""
 
         height = 22
         width = 18
 
         for row in range(height):
             for col in range(width):
-                if (0 < row < 21 and 0 < col < 11) or (0 < row < 6 and 11 < col < 17):
-                    cell = 0
-                else:
-                    cell = 1
                 x_coordinate = col * 25
                 y_coordinate = row * 25
-
-                if cell == 0:
+                if (0 < row < 21 and 0 < col < 11) or (0 < row < 6 and 11 < col < 17):
                     self.backgrounds.add(Background(
                         x_coordinate, y_coordinate))
-                elif cell == 1:
+                else:
                     self.obstacles.add(Wall(x_coordinate, y_coordinate))
+
+        score_text = Text("score", 300, 200, 30)
+        level_text = Text("level", 300, 275, 30)
 
         self.all_sprites.add(
             self.backgrounds,
-            self.obstacles
+            self.obstacles,
+            self.score,
+            self.level,
+            score_text,
+            level_text
         )
