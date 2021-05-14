@@ -23,7 +23,7 @@ class Tetromino(pygame.sprite.Sprite):
         super().__init__()
         self.speed = 0
         self.angle = 0
-        self.previous_move_time = 0
+        self.previous_move_times = [0, 0, 0]
         self.name = name
         if self.name is None:
             self.name = self.random_tetromino()
@@ -74,7 +74,7 @@ class Tetromino(pygame.sprite.Sprite):
         self.image = pygame.transform.rotate(self.original_image, self.angle)
         self.mask = pygame.mask.from_surface(self.image)
 
-    def should_move(self, current_time):
+    def should_move(self, current_time, direction):
         """Selvittää, pitääkö tetrominon liikkua.
 
         Args:
@@ -83,4 +83,10 @@ class Tetromino(pygame.sprite.Sprite):
         Returns:
             Boolean-arvo, joka kertoo, onko tetrominon aika liikkua.
         """
-        return current_time - self.previous_move_time >= self.speed
+        
+        if direction == "down":
+            return current_time - self.previous_move_times[0] >= self.speed
+        elif direction == "left":
+            return current_time - self.previous_move_times[1] >= 120
+        elif direction == "right":
+            return current_time - self.previous_move_times[2] >= 120

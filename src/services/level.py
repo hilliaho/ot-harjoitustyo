@@ -12,8 +12,10 @@ class Level:
         """Luokan konstruktori, joka luo uuden pelikentän tilasta vastaavan palvelun"""
         self.score = Text(0, 300, 225, 30)
         self.level = Text(1, 300, 300, 30)
+        self.start_game_button = Text("START GAME", 300, 375, 25, (255, 0, 0))
         self.tetromino = None
         self.next_tetromino = Tetromino(None, 300, 40)
+        self.direction = None
         self.tetrominoes = pygame.sprite.Group()
         self.backgrounds = pygame.sprite.Group()
         self.obstacles = pygame.sprite.Group()
@@ -33,7 +35,7 @@ class Level:
             if self.tetromino is None:
                 self.new_tetromino()
 
-            if self.tetromino.should_move(current_time):
+            if self.tetromino.should_move(current_time, "down"):
                 if not self._tetromino_can_move("down"):
                     self._deactivate_tetromino()
                     self.delete_full_rows()
@@ -41,7 +43,15 @@ class Level:
                     self.new_tetromino()
                 else:
                     self._move_ip("down")
-                self.tetromino.previous_move_time = current_time
+                self.tetromino.previous_move_times[0] = current_time
+
+            if self.direction == "left" and self.tetromino.should_move(current_time, "left"):
+                self.move_tetromino("left")
+                self.tetromino.previous_move_times[1] = current_time
+
+            elif self.direction == "right"and self.tetromino.should_move(current_time, "right"):
+                self.move_tetromino("right")
+                self.tetromino.previous_move_times[2] = current_time
 
     def new_tetromino(self, name=None):
         """Luo uuden tetrominon ja lisää sen kaikkien spritejen ryhmään.
@@ -69,8 +79,8 @@ class Level:
         if self.tetromino is None:
             return False
         if self.tetromino.rect.y == 0 and not self._tetromino_can_move("down"):
-            self.all_sprites.add(Text("GAME", 300, 350, 52, (127,127,127)))
-            self.all_sprites.add(Text("OVER", 300, 400, 52, (127,127,127)))
+            self.all_sprites.add(Text("GAME", 300, 350, 52, (255,0,0)))
+            self.all_sprites.add(Text("OVER", 300, 400, 52, (255,0,0)))
             return True
         return False
 
@@ -264,6 +274,7 @@ class Level:
             self.obstacles,
             self.score,
             self.level,
+            self.start_game_button,
             score_text,
             level_text
         )
