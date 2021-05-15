@@ -2,21 +2,12 @@ import unittest
 import pygame
 from services.level import Level
 from services.game_loop import GameLoop
-
-
-class StubClock:
-    def tick(self, fps):
-        pass
-
-    def get_ticks(self):
-        return 0
-
+from services.clock import Clock
 
 class StubEvent:
     def __init__(self, event_type, key):
         self.type = event_type
         self.key = key
-
 
 class StubEventQueue:
     def __init__(self, events):
@@ -24,7 +15,6 @@ class StubEventQueue:
 
     def get(self):
         return self._events
-
 
 class StubRenderer:
     def render(self):
@@ -43,7 +33,7 @@ class TestGameLoop(unittest.TestCase):
             self.level,
             StubRenderer(),
             StubEventQueue(events),
-            StubClock()
+            Clock()
         )
 
         game_loop.start()
