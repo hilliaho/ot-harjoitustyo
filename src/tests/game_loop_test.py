@@ -48,4 +48,4 @@ class TestGameLoop(unittest.TestCase):
 
         game_loop.start()
 
-        self.assertTrue(self.level.tetromino.rect.y > 500)
+        self.assertTrue(self.level.tetromino.rect.y > 400)

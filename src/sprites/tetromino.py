@@ -74,7 +74,7 @@ class Tetromino(pygame.sprite.Sprite):
         self.image = pygame.transform.rotate(self.original_image, self.angle)
         self.mask = pygame.mask.from_surface(self.image)
 
-    def should_move(self, current_time, direction):
+    def should_move(self, current_time=0, direction="down"):
         """Selvittää, pitääkö tetrominon liikkua.
 
         Args:

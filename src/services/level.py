@@ -138,6 +138,7 @@ class Level:
 
         while self._tetromino_can_move("down"):
             self._move_ip("down")
+        print(self.tetromino.rect.y)
 
     def _deactivate_tetromino(self):
         """Deaktivoi maahan pudonneen tetrominon."""
