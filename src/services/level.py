@@ -49,7 +49,7 @@ class Level:
                 self.move_tetromino("left")
                 self.tetromino.previous_move_times[1] = current_time
 
-            elif self.direction == "right"and self.tetromino.should_move(current_time, "right"):
+            elif self.direction == "right" and self.tetromino.should_move(current_time, "right"):
                 self.move_tetromino("right")
                 self.tetromino.previous_move_times[2] = current_time
 
@@ -79,14 +79,14 @@ class Level:
         if self.tetromino is None:
             return False
         if self.tetromino.rect.y == 0 and not self._tetromino_can_move("down"):
-            self.all_sprites.add(Text("GAME", 300, 350, 52, (255,0,0)))
-            self.all_sprites.add(Text("OVER", 300, 400, 52, (255,0,0)))
+            self.all_sprites.add(Text("GAME", 300, 350, 52, (255, 0, 0)))
+            self.all_sprites.add(Text("OVER", 300, 400, 52, (255, 0, 0)))
             return True
         return False
 
     def level_up(self):
         """korottaa tasoa tarvittaessa"""
-        
+
         level_content = self.level.content
         if self.score.content >= 5*level_content**2:
             level_content += 1
@@ -138,7 +138,6 @@ class Level:
 
         while self._tetromino_can_move("down"):
             self._move_ip("down")
-        print(self.tetromino.rect.y)
 
     def _deactivate_tetromino(self):
         """Deaktivoi maahan pudonneen tetrominon."""

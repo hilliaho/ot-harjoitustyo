@@ -83,7 +83,7 @@ class Tetromino(pygame.sprite.Sprite):
         Returns:
             Boolean-arvo, joka kertoo, onko tetrominon aika liikkua.
         """
-        
+
         if direction == "down":
             return current_time - self.previous_move_times[0] >= self.speed
         elif direction == "left":
