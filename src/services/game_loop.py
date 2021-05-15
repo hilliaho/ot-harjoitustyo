@@ -15,8 +15,7 @@ class GameLoop:
                 break
             self._render()
             if self._running:
-                current_time = self._clock.get_ticks()
-                self._level.update(current_time)
+                self._level.update(self._clock.get_ticks(), False)
                 self._clock.tick(60)
 
     def _handle_events(self):
@@ -47,6 +46,7 @@ class GameLoop:
                         self._level.set_tetromino_speed(2)
                     if event.key == pygame.K_SPACE:
                         self._level.drop_tetromino()
+                        self._level.update(self._clock.get_ticks(), True)
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_DOWN:
                         self._level.set_tetromino_speed(1)

@@ -22,7 +22,7 @@ class Level:
         self.all_sprites = pygame.sprite.Group()
         self._initialize_sprites()
 
-    def update(self, current_time):
+    def update(self, current_time, dropped):
         """Päivittää pelikentän tilan.
 
         Selvittää, mitä pelikentällä kuuluu tapahtua seuraavaksi,
@@ -35,7 +35,7 @@ class Level:
             if self.tetromino is None:
                 self.new_tetromino()
 
-            if self.tetromino.should_move(current_time, "down"):
+            if dropped or self.tetromino.should_move(current_time, "down"):
                 if not self._tetromino_can_move("down"):
                     self._deactivate_tetromino()
                     self.delete_full_rows()
