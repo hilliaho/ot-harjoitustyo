@@ -20,6 +20,8 @@ Pelin aikana pelikentälle ilmestyy Tetromino-palikoita, jotka putoavat alaspäi
 
 [Arkkitehtuurikuvaus](https://github.com/hilliaho/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/hilliaho/ot-harjoitustyo/blob/main/dokumentaatio/testaus.md)
+
 ## Komentorivitoimintoja
 
 Riippuvuuksien asennus: `poetry install`
