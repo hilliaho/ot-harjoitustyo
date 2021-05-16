@@ -42,9 +42,11 @@ class Tetromino(pygame.sprite.Sprite):
         Returns:
             Arvottu nimi yksittäisenä merkkinä.
         """
+        
         tetromino_names = "IOTJLSZ"
         i = random.randint(0, 6)
         return tetromino_names[i]
+
 
     def rotate(self, clockwise):
         """Kääntää tetrominoa 90 astetta joko myötä- tai vastapäivään.

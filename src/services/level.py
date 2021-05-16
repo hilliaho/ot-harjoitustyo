@@ -37,7 +37,7 @@ class Level:
 
             if dropped or self.tetromino.should_move(current_time, "down"):
                 if not self._tetromino_can_move("down"):
-                    self._deactivate_tetromino()
+                    self.deactivate_tetromino()
                     self.delete_full_rows()
                     self.level_up()
                     self.new_tetromino()
@@ -138,8 +138,9 @@ class Level:
 
         while self._tetromino_can_move("down"):
             self._move_ip("down")
+        print(self.tetromino.rect.y)
 
-    def _deactivate_tetromino(self):
+    def deactivate_tetromino(self):
         """Deaktivoi maahan pudonneen tetrominon."""
 
         colliding = self._collide(self.tetromino, self.backgrounds)
@@ -151,7 +152,7 @@ class Level:
             self.tetrominoes.add(tetromino)
         self.tetromino.kill()
 
-    def _detect_full_rows(self):
+    def detect_full_rows(self):
         """Selvittää, mitkä rivit ovat täynnä.
 
         Returns:
@@ -169,7 +170,7 @@ class Level:
     def delete_full_rows(self):
         """Poistaa täynnä olevat rivit."""
 
-        full_rows = self._detect_full_rows()
+        full_rows = self.detect_full_rows()
         for tetromino in self.tetrominoes:
             row = tetromino.rect.y/25
             if row in full_rows:
