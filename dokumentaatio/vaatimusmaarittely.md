@@ -8,34 +8,25 @@ Sovelluksen avulla käyttäjä voi pelata Tetris-peliä.
 
 ### Ennen pelin aloittamista
 
-- [ ] Käyttäjä voi aloittaa pelin painamalla "Aloita" -nappia
+- Käyttäjä voi aloittaa pelin painamalla "START GAME" -nappia
 
 ### Pelin aikana
 
-- [x] Käyttäjä näkee eri muotoisia tetrominoja, jotka putoavat ylhäältä alas
-
-- [x] Käyttäjä näkee etukäteen myös seuraavaksi tulevan tetrominon
-
-- [x] Käyttäjä voi liikuttaa tetrominoja oikealle ja vasemmalle
-
-- [x] Käyttäjä voi kääntää tetrominoja eri päin
-
-- [x] Käyttäjä voi pudottaa tetrominon alas
-
-- [x] Tetrominot kasautuvat toistensa päälle siinä asennossa missä ne ovat pudonneet
-
-- [x] Rivi poistuu kun sen jokainen ruutu on täytetty
-
-- [x] Peli loppuu kun joku tetromino ei mahdu ruudulle
+- Käyttäjä näkee pelikentällä eri muotoisia tetrominoja, jotka putoavat ylhäältä alas
+- Käyttäjä voi liikuttaa tetrominoja oikealle ja vasemmalle
+- Käyttäjä voi kääntää tetrominoja eri päin
+- Käyttäjä voi pudottaa tetrominon alas
+- Rivi poistuu kun sen jokainen ruutu on täytetty
+- Peli loppuu kun uusi tetromino ei enää mahdu ruudulle
+- Käyttäjä näkee koko pelin ajan pelinäkymän oikeassa reunassa seuraavan tetrominon sekä senhetkisen tason ja pisteet
 
 ### Pelin jälkeen
 
-- [ ] Käyttäjä näkee omat pelistä saamansa pisteet
+- Käyttäjä tietää pelin loppuneen, kun pelinäkymän oikeaan reunaan ilmestyy "GAME OVER" -teksti
+- Käyttäjä näkee vielä omat lopulliset pisteensä ja saavuttamansa tason, sekä pelikentän tilanteen pelin lopussa
 
 ## Jatkokehitysideoita
 
-- [ ] Käyttäjä voi luoda oman käyttäjätunnuksen ja salasanan
-
-- [ ] Käyttäjä voi kirjautua peliin omalla käyttäjätunnuksellaan
-
-- [ ] Käyttäjä voi nähdä pelin etusivulla omat parhaat pisteensä
+- Käyttäjä voi luoda oman käyttäjätunnuksen ja salasanan
+- Käyttäjä voi kirjautua peliin omalla käyttäjätunnuksellaan
+- Käyttäjä voi nähdä pelin etusivulla omat parhaat pisteensä
