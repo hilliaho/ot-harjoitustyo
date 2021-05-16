@@ -1,12 +1,12 @@
 # Käyttöohje
 
-Lataa tietokoneellesi projektin uusin release.
+Lataa tietokoneellesi projektin uusin [release](https://github.com/hilliaho/ot-harjoitustyo/releases/tag/viikko7).
 
 # Käynnistäminen
 
 Asenna riippuvuudet komennolla `poetry install`.
 
-Käynnistä sen jälkeen ohjelma komennolla `poetry run invoke start`
+Käynnistä sen jälkeen ohjelma komennolla `poetry run invoke start`.
 
 # Pelin ohjeet
 
@@ -20,7 +20,7 @@ Pelikentän vieressä näkyy seuraavaksi tuleva tetromino.
 
 ![](./kuvat/pelin_aloitus.png)
 
-Kun jokin rivi saadaan täyteen, se poistuu pelikentältä. Poistetuista riveistä saa pisteitä. Pisteitä riviä kohden saa sitä enemmän, mitä enemmän rivejä poistaa kerralla.
+Tetrominoja ohjaillaan toistensa lomaan. Kun jokin pelikentän rivi saadaan täyteen, se poistuu pelikentältä. Poistetuista riveistä saa pisteitä. Pisteitä riviä kohden saa sitä enemmän, mitä enemmän rivejä poistaa kerralla.
 
 |poistettavat rivit|pisteet|
 |---|---|
@@ -29,9 +29,10 @@ Kun jokin rivi saadaan täyteen, se poistuu pelikentältä. Poistetuista riveist
 |3|9|
 |4|16|
 
-Pisteet näkyvät koko pelin ajan pelinäkymän oikeassa reunassa. Kun pistemäärä nousee tarpeeksi korkealle, myös pelin taso nousee. Tason noustessa tetrominojen kopeus kasvaa.
+Pisteet ja taso näkyvät koko pelin ajan pelinäkymän oikeassa reunassa. Kun pistemäärä nousee tarpeeksi korkealle, myös pelin taso nousee. Tason noustessa tetrominojen kopeus kasvaa.
 
-![](./kuvat/rivi_poistettu.png) ![](./kuvat/taysi_rivi.png)
+![](./kuvat/taysi_rivi.png)
+![](./kuvat/rivi_poistettu.png)
 
 Peli loppuu, kun uusi tetromino ei enää mahdu ruudulle. Tällöin oikeaan alakulmaan ilmestyy GAME OVER -teksti.
 
