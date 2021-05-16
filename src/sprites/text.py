@@ -24,10 +24,10 @@ class Text(pygame.sprite.Sprite):
         """
         super().__init__()
         self.content = content
-        self.font_size = font_size
-        self.image = pygame.Surface((120, self.font_size))
+        self._font_size = font_size
+        self.image = pygame.Surface((120, self._font_size))
         self.image.fill(background_color)
-        self.image.blit(pygame.font.SysFont(None, self.font_size).render(
+        self.image.blit(pygame.font.SysFont(None, self._font_size).render(
             str(self.content), True, (255, 255, 255)), [5, 4])
         self.rect = self.image.get_rect()
         self.rect.x = x_coordinate
@@ -35,6 +35,5 @@ class Text(pygame.sprite.Sprite):
 
     def update(self, background_color):
         self.image.fill(background_color)
-        self.image.blit(pygame.font.SysFont(None, self.font_size).render(
+        self.image.blit(pygame.font.SysFont(None, self._font_size).render(
             str(self.content), True, (255, 255, 255)), [5, 4])
-
