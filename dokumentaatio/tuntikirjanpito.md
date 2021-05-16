@@ -24,4 +24,9 @@ päivä|aika|mitä tein
 |4.5.|2|docstring
 | |2|seuraava tetromino näkyviin
 | |1|käyttöohje
-|yht|35|
+|11.5.|3|pisteet ja tasot
+|14.5.|2|start game -nappi
+|15.5.|3|testaus
+|16.5.|4|testaus
+| |2|refaktorointi
+|yht|47|
